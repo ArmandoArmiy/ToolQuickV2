@@ -10,9 +10,9 @@
     <title>ToolQuick</title>
 </head>
 <body class="bg-light text-dark">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ff6600;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ff7c00; font-family: Arial, sans-serif;">
     <div class="container">
-        <a class="navbar-brand mx-auto" href="#" style="color: #fff; margin-right: 100px;">ToolQuick</a>
+        <a class="navbar-brand mx-auto" href="/" style="color: #fff; margin-right: 100px;">ToolQuick</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -24,8 +24,8 @@
                 <li class="nav-item">
                     <a class="nav-link text-light" href="/product">Productos</a>
                 </li>
-                <li class "nav-item">
-                <a class="nav-link text-light" href="/partners">Partners</a>
+                <li class="nav-item">
+                <a class="nav-link text-light" href="/partners">Socios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="/transaction">Transacciones</a>
@@ -43,7 +43,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<footer style="background-color: #ff6600; color: #fff; text-align: center; padding: 10px;">
+<footer style="background-color: #ff7c00; color: #fff; text-align: center; padding: 10px;">
     ToolQuick es una herramienta en fase de pruebas. Cualquier uso fuera de los lineamientos del equipo deslinda a estos últimos de cualquier responsabilidad.
 </footer>
 </body>
