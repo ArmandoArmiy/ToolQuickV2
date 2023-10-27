@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Partners extends Model
 {
     use HasFactory;
+    protected $table = 'partners';
+    protected $fillable = ['PartnerName', 'Address', 'PhoneNumber', 'Email', 'PartnerType'];
 }

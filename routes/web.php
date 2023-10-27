@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PartnersController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Transaction_DetailsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('/category', CategoryController::class);
+
+Route::resource('/partners', PartnersController::class);
+
+Route::resource('/transaction', TransactionController::class);
+
+Route::resource('/product', ProductController::class);
+
+Route::resource('/details', Transaction_DetailsController::class);
