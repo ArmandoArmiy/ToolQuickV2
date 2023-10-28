@@ -75,7 +75,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category): RedirectResponse
     {
-        //dd($category);
         $category->delete();
         return redirect()->route('category.index')->with('success', 'Categoría Eliminada exitosamente!');
     }
