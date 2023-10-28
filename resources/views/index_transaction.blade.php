@@ -20,8 +20,9 @@
         @endif
 
         <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
                     <th>ID</th>
                     <th>Fecha</th>
                     <th>ID del partner</th>
@@ -29,6 +30,8 @@
                     <th>Tipo de transacción</th>
                     <th>Acción</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach ($transaction as $transaction)
                     <tr>
                         <td class="fw-bold">{{ $transaction->id }}</td>
@@ -49,6 +52,7 @@
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
         </div>
     </div>

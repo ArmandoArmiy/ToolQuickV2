@@ -21,8 +21,9 @@
         @endif
 
         <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
                     <th>Numero de Transaccion</th>
                     <th>Numero del producto</th>
                     <th>Cantidad</th>
@@ -30,9 +31,11 @@
                     <th>Subtotal</th>
                     <th>Acciones</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach ($details as $details )
                     <tr>
-                        <td class="fw-bold">{{$details->Transaction_id}}</td>
+                        <th scope="row">{{$details->Transaction_id}}</th>
                         <td>{{$details->Product_id}}</td>
                         <td>{{$details->Quantity}}</td>
                         <td>{{$details->UnitPrice}}</td>
@@ -49,9 +52,8 @@
                             </form>
                         </td>
                     </tr>
-
                 @endforeach
-
+                </tbody>
             </table>
         </div>
     </div>

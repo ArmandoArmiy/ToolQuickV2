@@ -20,8 +20,9 @@
         @endif
 
         <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
                     <th>Nombre</th>
                     <th>Direccion</th>
                     <th>Numero Telefonico</th>
@@ -29,6 +30,8 @@
                     <th>Tipo</th>
                     <th>Acción</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach ($partner as $partner )
                     <tr>
                         <td class="fw-bold">{{$partner->PartnerName}}</td>
@@ -49,6 +52,7 @@
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
         </div>
     </div>

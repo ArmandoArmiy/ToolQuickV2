@@ -20,15 +20,18 @@
         @endif
 
         <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Acción</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach ($categorys as $categorys )
                     <tr>
-                        <td class="fw-bold">{{$categorys->CategoryName}}</td>
+                        <th scope="row">{{$categorys->CategoryName}}</th>
                         <td>{{$categorys->CategoryDescription}}</td>
                         <td>
                             <form action="{{route('category.edit', $categorys)}}" method="GET" class="d-inline">
@@ -42,9 +45,8 @@
                             </form>
                         </td>
                     </tr>
-
                 @endforeach
-
+                </tbody>
             </table>
         </div>
     </div>

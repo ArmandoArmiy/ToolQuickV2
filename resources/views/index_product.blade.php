@@ -20,20 +20,21 @@
         @endif
 
         <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
-                    <th>Nombre del producto</th>
-                    <th>Descripción</th>
-                    <th>Precio de venta</th>
-                    <th>Stock</th>
-                    <th>Categoría</th>
-                    <th>Acción</th>
-
-
+            <table class="table">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Nombre del producto</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Precio de venta</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Acción</th>
                 </tr>
+                </thead>
+                <tbody>
                 @foreach ($products as $products )
                     <tr>
-                        <td class="fw-bold">{{$products->ProductName}}</td>
+                        <th scope="row">{{$products->ProductName}}</th>
                         <td>{{$products->Description}}</td>
                         <td>{{$products->SellingPrice}}</td>
                         <td>{{$products->QuantityInInventory}}</td>
@@ -50,10 +51,12 @@
                             </form>
                         </td>
                     </tr>
-
                 @endforeach
-
+                </tbody>
             </table>
         </div>
     </div>
+    <form action="{{route('product.show', $products)}}" method="GET" class="d-inline">
+        <button type="submit" class="btn btn-outline-danger">Reporte</button>
+    </form>
 @endsection

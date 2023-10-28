@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductController extends Controller
 {
@@ -48,7 +49,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $products = Product::all();
+        $pdf = Pdf::loadView('report_product', ['products' => $products]);
+        return $pdf->stream('report_product.pdf');
     }
 
     /**
