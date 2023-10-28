@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <div>
-                <h2 class="text-dark">Transacciones</h2>
+                <h2 class="text-dark mt-3">Transacciones</h2>
             </div>
             <div>
                 <form action="{{route('details.create', $details)}}" method="GET" class="d-inline">
@@ -57,4 +57,7 @@
             </table>
         </div>
     </div>
+    <form action="{{route('details.show', $details)}}" method="GET" class="d-inline">
+        <button type="submit" class="btn btn-outline-danger text-center mt-2">Reporte</button>
+    </form>
 @endsection

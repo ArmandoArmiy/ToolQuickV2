@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <div>
-                <h2 class="text-dark">Productos</h2>
+                <h2 class="text-dark mt-3">Productos</h2>
             </div>
             <div>
                 <form action="{{route('product.create', $products)}}" method="GET" class="d-inline">

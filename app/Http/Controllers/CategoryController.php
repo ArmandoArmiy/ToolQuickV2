@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -45,7 +46,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $categorys = Category::all();
+        $pdf = Pdf::loadView('report_category', ['categorys' => $categorys]);
+        return $pdf->stream('reporte_categorias.pdf');
     }
 
     /**

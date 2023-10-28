@@ -51,7 +51,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $pdf = Pdf::loadView('report_product', ['products' => $products]);
-        return $pdf->stream('report_product.pdf');
+        return $pdf->stream('reporte_de_productos.pdf');
     }
 
     /**

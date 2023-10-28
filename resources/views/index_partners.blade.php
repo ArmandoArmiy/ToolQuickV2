@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12">
             <div>
-                <h2 class="text-dark">Socios</h2>
+                <h2 class="text-dark mt-3">Socios</h2>
             </div>
             <div>
                 <form action="{{route('partners.create', $partner)}}" method="GET" class="d-inline">
@@ -56,4 +56,7 @@
             </table>
         </div>
     </div>
+    <form action="{{route('partners.show', $partner)}}" method="GET" class="d-inline">
+        <button type="submit" class="btn btn-outline-danger text-center mt-2">Reporte</button>
+    </form>
 @endsection

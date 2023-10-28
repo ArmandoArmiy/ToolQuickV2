@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Partners;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -22,7 +23,7 @@ class PartnersController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create():View
     {
         return view('create_partners');
     }
@@ -49,7 +50,9 @@ class PartnersController extends Controller
      */
     public function show(Partners $partners)
     {
-        //
+        $partner = Partners::all();
+        $pdf = Pdf::loadView('report_partners', ['partner' => $partner]);
+        return $pdf->stream('reporte_socios.pdf');
     }
 
     /**
