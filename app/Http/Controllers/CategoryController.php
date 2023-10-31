@@ -7,6 +7,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
@@ -76,10 +77,19 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Category $category): RedirectResponse
     {
-        $category->delete();
-        return redirect()->route('category.index')->with('success', 'Categoría Eliminada exitosamente!');
+        try {
+            $category->delete();
+            return redirect()->route('category.index')->with('success', 'Categoría eliminada exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }
 

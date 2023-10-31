@@ -19,6 +19,11 @@
             </div>
 
         @endif
+        @if (Session::get('error'))
+            <div class="alert alert-danger mt-2">
+                <strong>{{Session::get('error')}}<br>
+            </div>
+        @endif
 
         <div class="col-12 mt-4">
             <table class="table">

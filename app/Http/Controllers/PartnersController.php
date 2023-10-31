@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Partners;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -85,7 +86,15 @@ class PartnersController extends Controller
      */
     public function destroy(Partners $partners): RedirectResponse
     {
-        $partners->delete();
-        return redirect()->route('partners.index')->with('success', 'Eliminado exitosamente!');
+        try {
+            $partners->delete();
+            return redirect()->route('partners.index')->with('success', 'Eliminado exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -84,7 +85,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return redirect()->route('product.index')->with('success', 'Producto Eliminado exitosamente!');
+
+        try {
+            $product->delete();
+            return redirect()->route('product.index')->with('success', 'Producto Eliminado exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }

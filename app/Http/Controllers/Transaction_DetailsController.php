@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction_Details;
+use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
@@ -83,7 +84,15 @@ class Transaction_DetailsController extends Controller
     public function destroy(Transaction_Details $transaction_Details)
     {
         //dd($transaction_Details);
-        $transaction_Details->delete();
-        return redirect()->route('details.index')->with('success', 'Transacción Eliminada exitosamente!');
+        try {
+            $transaction_Details->delete();
+            return redirect()->route('details.index')->with('success', 'Transacción Eliminada exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }

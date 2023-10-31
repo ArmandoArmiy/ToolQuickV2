@@ -13,9 +13,14 @@
             </div>
         </div>
 
-        @if (Session::has('success'))
+        @if (Session::get('success'))
             <div class="alert alert-success mt-2">
                 <strong>{{ Session::get('success') }}</strong>
+            </div>
+        @endif
+        @if (Session::get('error'))
+            <div class="alert alert-danger mt-2">
+                <strong>{{Session::get('error')}}<br>
             </div>
         @endif
 
