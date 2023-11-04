@@ -14,10 +14,17 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::latest()->paginate(15);
-        return view('index_product', ['products' => $products]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $products = Product::search($searchTerm)->paginate(15);
+        } else {
+            $products = Product::latest()->paginate(15);
+        }
+
+        return view('index_product', ['products' => $products, 'searchTerm' => $searchTerm]);
     }
 
     /**

@@ -14,10 +14,17 @@ class Transaction_DetailsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $details = Transaction_Details::latest()->paginate(15);
-        return view('index_details', ['details' => $details]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $details = Transaction_Details::search($searchTerm)->paginate(15);
+        } else {
+            $details = Transaction_Details::latest()->paginate(15);
+        }
+
+        return view('index_details', ['details' => $details, 'searchTerm' => $searchTerm]);
     }
 
     /**

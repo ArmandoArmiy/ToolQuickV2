@@ -3,13 +3,17 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Productos
         </h2>
-        <div class="flex">
+        <div class="flex mt-2">
             <form action="{{route('product.create', $products)}}" method="GET" class="d-inline">
-                <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
-                    Añadir </button>
+                <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Crear</button>
             </form>
             <form action="{{route('product.show', $products)}}" method="GET" class="d-inline">
-                <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded">Generar PDF</button>
+                <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-2">Generar PDF</button>
+            </form>
+        </div>
+        <div class="mt-1.5 justify-center items-center bg-gray-50">
+            <form action="{{ route('product.index') }}" method="GET">
+                <input type="text" name="q" class="w-full border-2 border-gray-300 rounded-md p-2" placeholder="Buscar producto...">
             </form>
         </div>
     </x-slot>

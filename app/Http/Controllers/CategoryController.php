@@ -14,12 +14,18 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categorys = Category::latest()->paginate(15);
-        return view('index_category', ['categorys' => $categorys]);
-    }
+        $searchTerm = $request->input('q');
 
+        if ($searchTerm) {
+            $categorys = Category::search($searchTerm)->paginate(15);
+        } else {
+            $categorys = Category::latest()->paginate(15);
+        }
+
+        return view('index_category', ['categorys' => $categorys, 'searchTerm' => $searchTerm]);
+    }
     /**
      * Show the form for creating a new resource.
      */

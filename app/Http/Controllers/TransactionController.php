@@ -14,10 +14,17 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(Request $request):View
     {
-        $transaction = Transaction::latest()->paginate(15);
-        return view('index_transaction', ['transaction' => $transaction]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $transaction = Transaction::search($searchTerm)->paginate(15);
+        } else {
+            $transaction = Transaction::latest()->paginate(15);
+        }
+
+        return view('index_transaction', ['transaction' => $transaction, 'searchTerm' => $searchTerm]);
     }
 
     /**

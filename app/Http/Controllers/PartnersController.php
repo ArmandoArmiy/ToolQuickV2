@@ -15,10 +15,17 @@ class PartnersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $partner = Partners::latest()->paginate(15);
-        return view('index_partners', ['partner'=> $partner]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $partner = Partners::search($searchTerm)->paginate(15);
+        } else {
+            $partner = Partners::latest()->paginate(15);
+        }
+
+        return view('index_partners', ['partner' => $partner, 'searchTerm' => $searchTerm]);
     }
 
     /**
