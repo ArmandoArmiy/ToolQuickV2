@@ -16,10 +16,7 @@ class CategoryController extends Controller
     {
         $categorys = Category::latest()->paginate(15);
         return view('index_category', ['categorys' => $categorys])
-    public function index()
-    {
-        //
-    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -27,10 +24,7 @@ class CategoryController extends Controller
     public function create(): View
     {
         return view('create_category');
-    public function create()
-    {
-        //
-    }
+  
 
     /**
      * Store a newly created resource in storage.
@@ -46,12 +40,6 @@ class CategoryController extends Controller
         Category::create($request->all());
         return redirect()->route('category.index')->with('success', 'Nueva Categoría creada exitosamente!');
 
-    public function store(Request $request)
-    {
-        //
-
-    }
-
     /**
      * Display the specified resource.
      */
@@ -66,10 +54,7 @@ class CategoryController extends Controller
     public function edit(Category $category): View
     {
         return view('edit_category', ['category' => $category]);
-    public function edit(Category $category)
-    {
-        //
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -83,10 +68,7 @@ class CategoryController extends Controller
         //dd($request->all());
         $category->update($request->all());
         return redirect()->route('category.index')->with('success', 'Categoría actualizada exitosamente!');
-    public function update(Request $request, Category $category)
-    {
-        //
-    }
+   
 
     /**
      * Remove the specified resource from storage.
