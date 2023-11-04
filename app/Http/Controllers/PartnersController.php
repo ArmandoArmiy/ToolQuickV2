@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Partners;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -13,16 +15,23 @@ class PartnersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $partner = Partners::latest()->paginate(15);
-        return view('index_partners', ['partner'=> $partner]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $partner = Partners::search($searchTerm)->paginate(15);
+        } else {
+            $partner = Partners::latest()->paginate(15);
+        }
+
+        return view('index_partners', ['partner' => $partner, 'searchTerm' => $searchTerm]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create():View
     {
         return view('create_partners');
     }
@@ -49,7 +58,9 @@ class PartnersController extends Controller
      */
     public function show(Partners $partners)
     {
-        //
+        $partner = Partners::all();
+        $pdf = Pdf::loadView('report_partners', ['partner' => $partner]);
+        return $pdf->stream('reporte_socios.pdf');
     }
 
     /**
@@ -82,7 +93,15 @@ class PartnersController extends Controller
      */
     public function destroy(Partners $partners): RedirectResponse
     {
-        $partners->delete();
-        return redirect()->route('partners.index')->with('success', 'Eliminado exitosamente!');
+        try {
+            $partners->delete();
+            return redirect()->route('partners.index')->with('success', 'Eliminado exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }

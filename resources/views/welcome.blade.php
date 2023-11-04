@@ -23,6 +23,6 @@
     </div>
 
     <div style="text-align: center; max-width: 960px; margin: 0 auto;padding: 20px;">
-        <img src="/logo.jpg" alt="Logo">
+        <img src="/images/logo.jpg" class="img-fluid" alt="Logo">
     </div>
 @endsection

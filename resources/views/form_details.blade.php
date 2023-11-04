@@ -1,33 +1,33 @@
 @csrf
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+<div class="flex flex-col">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>ID de Transacción:</strong>
-            {{ Form::number('Transaction_id', null, ['class' => 'form-control', 'placeholder' => 'Identificador de la transacción']) }}
+            <label for="Transaction_id" class="text-gray-700 font-bold">ID de Transacción:</label>
+            {{ Form::number('Transaction_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Identificador de la transacción']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>ID del Producto:</strong>
-            {{ Form::number('Product_id', null, ['class' => 'form-control', 'placeholder' => 'Identificador del producto']) }}
+            <label for="Product_id" class="text-gray-700 font-bold">ID del Producto:</label>
+            {{ Form::number('Product_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Identificador del producto']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Cantidad:</strong>
-            {{ Form::number('Quantity', null, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Cantidad del producto']) }}
+            <label for="Quantity" class="text-gray-700 font-bold">Cantidad:</label>
+            {{ Form::number('Quantity', null, ['step' => '0.01', 'class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Cantidad del producto']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Precio unitario:</strong>
-            {{ Form::number('UnitPrice', null, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Precio por unidad']) }}
+            <label for="UnitPrice" class="text-gray-700 font-bold">Precio unitario:</label>
+            {{ Form::number('UnitPrice', null, ['step' => '0.01', 'class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Precio por unidad']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Subtotal:</strong>
-            {{ Form::number('Subtotal', null, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Subtotal']) }}
+            <label for="Subtotal" class="text-gray-700 font-bold">Subtotal:</label>
+            {{ Form::number('Subtotal', null, ['step' => '0.01', 'class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Subtotal']) }}
         </div>
     </div>
 </div>

@@ -1,21 +1,17 @@
-@extends('layouts.base')
-
-@section('content')
-    <div class="row">
-        <div class="col-12">
-            <div>
-                <h2>Editar Detalles </h2>
-            </div>
-            <div>
-                <a href="{{route('details.index')}}" class="btn btn-primary">Volver</a>
-            </div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-gray-700 font-semibold text-xl leading-tight">
+            {{ __('Editar Detalles') }}
+        </h2>
+        <div>
+            <a href="{{ route('details.index') }}" class="btn btn-primary">Volver</a>
         </div>
+    </x-slot>
 
-        {!! Form::model($details, ['route' => ['details.update', $details], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
-        @include('form_category')
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-            {{ Form::submit('Actualizar', ['class' => 'btn btn-primary']) }}
-        </div>
-        {!! Form::close() !!}
+    {!! Form::model($details, ['route' => ['details.update', $details], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+    @include('form_category')
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
+        {{ Form::submit('Actualizar', ['class' => 'btn btn-primary']) }}
     </div>
-@endsection
+    {!! Form::close() !!}
+</x-app-layout>

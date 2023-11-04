@@ -3,19 +3,29 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Illuminate\Database\QueryException;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $categorys = Category::latest()->paginate(15);
-        return view('index_category', ['categorys' => $categorys])
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $categorys = Category::search($searchTerm)->paginate(15);
+        } else {
+            $categorys = Category::latest()->paginate(15);
+        }
+
+        return view('index_category', ['categorys' => $categorys, 'searchTerm' => $searchTerm]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -39,7 +49,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $categorys = Category::all();
+        $pdf = Pdf::loadView('report_category', ['categorys' => $categorys]);
+        return $pdf->stream('reporte_categorias.pdf');
     }
     /**
      * Show the form for editing the specified resource.
@@ -66,15 +78,19 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Category $category): RedirectResponse
     {
-        $category->delete();
-        return redirect()->route('category.index')->with('success', 'Categoría Eliminada exitosamente!');
-    }
-}
+        try {
+            $category->delete();
+            return redirect()->route('category.index')->with('success', 'Categoría eliminada exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
 
-    public function destroy(Category $category)
-    {
-        //
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
+
 }

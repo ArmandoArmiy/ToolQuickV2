@@ -1,55 +1,71 @@
-@extends('layouts.base')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Socios
+        </h2>
+        <div class="flex mt-2">
+            <form action="{{route('partners.create', $partner)}}" method="GET" class="d-inline">
+                <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Crear</button>
+            </form>
+            <form action="{{route('partners.show', $partner)}}" method="GET" class="d-inline">
+                <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-2">Generar PDF</button>
+            </form>
 
-@section('content')
-    <div class="row">
-        <div class="col-12">
-            <div>
-                <h2 class="text-dark">Socios</h2>
-            </div>
-            <div>
-                <form action="{{route('partners.create', $partner)}}" method="GET" class="d-inline">
-                    <button type="submit" class="btn btn-primary">Agregar</button>
-                </form>
-            </div>
         </div>
+        <div class="mt-1.5 justify-center items-center bg-gray-50">
+            <form action="{{ route('partners.index') }}" method="GET">
+                <input type="text" name="q" class="w-full border-2 border-gray-300 rounded-md p-2" placeholder="Buscar Asociado...">
+            </form>
+        </div>
+    </x-slot>
 
-        @if (Session::get('success'))
-            <div class="alert alert-success mt-2">
-                <strong>{{Session::get('success')}}<br></strong>
-            </div>
-        @endif
+    @if (Session::get('success'))
+        <div class="alert alert-success mt-2">
+            <strong>{{Session::get('success')}}</strong>
+        </div>
+    @endif
+    @if (Session::get('error'))
+        <div class="alert alert-danger mt-2">
+            <strong>{{Session::get('error')}}</strong>
+        </div>
+    @endif
 
-        <div class="col-12 mt-4">
-            <table class="table table-bordered text-dark">
-                <tr class="text-secondary">
-                    <th>Nombre</th>
-                    <th>Direccion</th>
-                    <th>Numero Telefonico</th>
-                    <th>Correo</th>
-                    <th>Tipo</th>
-                    <th>Acción</th>
-                </tr>
-                @foreach ($partner as $partner )
-                    <tr>
-                        <td class="fw-bold">{{$partner->PartnerName}}</td>
-                        <td>{{$partner->Address}}</td>
-                        <td>{{$partner->PhoneNumber}}</td>
-                        <td>{{$partner->Email}}</td>
-                        <td>{{$partner->PartnerType}}</td>
-                        <td>
-                            <form action="{{route('partners.edit', $partner)}}" method="GET" class="d-inline">
-                                <button type="submit" class="btn btn-warning">Editar</button>
+    <div class="col-12 mt-4">
+        <table  class="table-fixed border-collapse border border-slate-800 mx-auto">
+            <thead class="text-m text-white uppercase bg-gray-50 dark:bg-gray-700 dark:text-white-400">
+            <tr>
+                <th class="px-4 py-2">Nombre</th>
+                <th class="px-4 py-2">Dirección</th>
+                <th class="px-4 py-2">Número Telefónico</th>
+                <th class="px-4 py-2">Correo</th>
+                <th class="px-4 py-2">Tipo</th>
+                <th class="px-4 py-2">Acción</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach ($partner as $partner)
+                <tr>
+                    <td class="border px-4 py-2 fw-bold">{{$partner->PartnerName}}</td>
+                    <td class="border px-4 py-2">{{$partner->Address}}</td>
+                    <td class="border px-4 py-2">{{$partner->PhoneNumber}}</td>
+                    <td class="border px-4 py-2">{{$partner->Email}}</td>
+                    <td class="border px-4 py-2">{{$partner->PartnerType}}</td>
+                    <td class="border px-4 py-2">
+                        <div class="flex">
+                            <form action="{{ route('partners.edit', $partner) }}" method="GET" class="inline">
+                                <button type="submit" class="bg-white text-yellow-500 border border-yellow-500 hover:border-yellow-700 font-bold py-2 px-4 rounded mr-4" >Editar</button>
                             </form>
 
-                            <form action="{{route('partners.destroy', $partner)}}" method="POST" class="d-inline">
+                            <form action="{{ route('partners.destroy', $partner) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="bg-white text-red-500 border border-red-500 hover:border-red-700 font-bold py-2 px-4 rounded" >Eliminar</button>
                             </form>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-@endsection
+</x-app-layout>

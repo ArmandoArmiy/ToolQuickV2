@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use Illuminate\Database\QueryException;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -12,10 +14,17 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():View
+    public function index(Request $request):View
     {
-        $transaction = Transaction::latest()->paginate(15);
-        return view('index_transaction', ['transaction' => $transaction]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $transaction = Transaction::search($searchTerm)->paginate(15);
+        } else {
+            $transaction = Transaction::latest()->paginate(15);
+        }
+
+        return view('index_transaction', ['transaction' => $transaction, 'searchTerm' => $searchTerm]);
     }
 
     /**
@@ -48,7 +57,9 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        $transactions = Transaction::all();
+        $pdf = Pdf::loadView('report_transaction', ['transaction' => $transactions]);
+        return $pdf->stream('reporte_de_transacciones_generales.pdf');
     }
 
     /**
@@ -81,7 +92,17 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //dd($transaction);
-        $transaction->delete();
-        return redirect()->route('transaction.index')->with('success', 'Transacción Eliminada exitosamente!');
+        try {
+            $transaction->delete();
+            return redirect()->route('transaction.index')->with('success', 'Transacción Eliminada exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
+
+
     }
 }

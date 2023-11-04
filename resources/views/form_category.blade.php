@@ -1,15 +1,10 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-        <div class="form-group">
-            <strong>Nombre de la categoría:</strong>
-            {{ Form::text('CategoryName', null, ['class' => 'form-control', 'placeholder' => 'Categoría']) }}
-        </div>
+<div class="flex flex-col">
+    <div class="w-full mt-2">
+        <label for="CategoryName" class="text-gray-700 font-bold">Nombre de la categoría:</label>
+        {{ Form::text('CategoryName', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Categoría']) }}
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
-        <div class="form-group">
-            <strong>Descripción de la Categoría:</strong>
-            {{ Form::textarea('CategoryDescription', null, ['class' => 'form-control', 'style' => 'height:150px', 'placeholder' => 'Descripción...']) }}
-        </div>
+    <div class="w-full mt-2">
+        <label for="CategoryDescription" class="text-gray-700 font-bold">Descripción de la Categoría:</label>
+        {{ Form::textarea('CategoryDescription', null, ['class' => 'border border-gray-300 rounded w-full h-24', 'placeholder' => 'Descripción...']) }}
     </div>
-
 </div>

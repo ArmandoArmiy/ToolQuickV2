@@ -3,19 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(Request $request): View
     {
-        $products = Product::latest()->paginate(15);
-        return view('index_product', ['products' => $products]);
+        $searchTerm = $request->input('q');
+
+        if ($searchTerm) {
+            $products = Product::search($searchTerm)->paginate(15);
+        } else {
+            $products = Product::latest()->paginate(15);
+        }
+
+        return view('index_product', ['products' => $products, 'searchTerm' => $searchTerm]);
     }
 
     /**
@@ -48,7 +57,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        $products = Product::all();
+        $pdf = Pdf::loadView('report_product', ['products' => $products]);
+        return $pdf->stream('reporte_de_productos.pdf');
     }
 
     /**
@@ -81,7 +92,16 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        $product->delete();
-        return redirect()->route('product.index')->with('success', 'Producto Eliminado exitosamente!');
+
+        try {
+            $product->delete();
+            return redirect()->route('product.index')->with('success', 'Producto Eliminado exitosamente!');
+        } catch (QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
+            }
+
+            return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
+        }
     }
 }
