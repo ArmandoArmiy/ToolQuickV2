@@ -16,20 +16,15 @@ class CategoryController extends Controller
     {
         $categorys = Category::latest()->paginate(15);
         return view('index_category', ['categorys' => $categorys])
-    
-
     /**
      * Show the form for creating a new resource.
      */
     public function create(): View
     {
         return view('create_category');
-  
-
     /**
      * Store a newly created resource in storage.
      */
-
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -39,7 +34,6 @@ class CategoryController extends Controller
         //dd($request->all());
         Category::create($request->all());
         return redirect()->route('category.index')->with('success', 'Nueva Categoría creada exitosamente!');
-
     /**
      * Display the specified resource.
      */
@@ -47,7 +41,6 @@ class CategoryController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      */
