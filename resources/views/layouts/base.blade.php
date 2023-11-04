@@ -10,40 +10,43 @@
     <title>ToolQuick</title>
 </head>
 <body class="bg-light text-dark" style=" display: grid; min-height: 100vh; grid-template-rows: auto 1fr auto;">
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ff7c00; font-family: Arial, sans-serif;">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
     <div class="container">
-        <img src="/images/TQ-LOGO.png" alt="Logo" style="height: 40px; margin-right: 10px;">
-        <a class="navbar-brand mx-auto" href="/" style="color: #fff; margin-right: 100px;">ToolQuick</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/category">Categorías</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/product">Productos</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link text-light" href="/partners">Socios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/transaction">Transacciones</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="/details">Detalle de Transacción</a>
-                </li>
+                @if (Route::has('login'))
+                    @auth
+                        <li class="nav-item">
+                            <a href="{{ url('/dashboard') }}" class="nav-link">Home</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('login') }}" class="nav-link">Log in</a>
+                        </li>
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a href="{{ route('register') }}" class="nav-link">Register</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
             </ul>
         </div>
     </div>
 </nav>
 
+
 <div class="container">
     @yield('content')
 </div>
-<!-- Código de instalación Cliengo para coship.n9090.atc@gmail.com --> <script type="text/javascript">(function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; ldk.src = 'https://s.cliengo.com/weboptimizer/653ff1876378a00032bdf63b/653ff1896378a00032bdf63f.js?platform=view_installation_code'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s); })();</script>
+<!-- Código de instalación Cliengo para coship.n9090.atc@gmail.com -->
+<script type="text/javascript">(function () { var ldk = document.createElement('script'); ldk.type = 'text/javascript'; ldk.async = true; ldk.src = 'https://s.cliengo.com/weboptimizer/653ff1876378a00032bdf63b/653ff1896378a00032bdf63f.js?platform=view_installation_code'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ldk, s); })();</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 <footer style="background-color: #ff7c00; color: #fff; text-align: center; padding: 10px;">
     ToolQuick es una herramienta en fase de pruebas. Cualquier uso fuera de los lineamientos del equipo deslinda a estos últimos de cualquier responsabilidad.
 </footer>

@@ -1,33 +1,32 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+<div class="flex flex-col">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Nombre:</strong>
-            {{ Form::text('PartnerName', null, ['class' => 'form-control', 'placeholder' => 'Nombre de la persona']) }}
+            <label for="PartnerName" class="text-gray-700 font-bold">Nombre:</label>
+            {{ Form::text('PartnerName', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Nombre de la persona']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Dirección:</strong>
-            {{ Form::text('Address', null, ['class' => 'form-control', 'placeholder' => 'Domicilio']) }}
+            <label for="Address" class="text-gray-700 font-bold">Dirección:</label>
+            {{ Form::text('Address', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Domicilio']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Numero Telefonico:</strong>
-            {{ Form::tel('PhoneNumber', null, ['class' => 'form-control', 'placeholder' => 'Numero telefonico personal o de la empresa']) }}
+            <label for="PhoneNumber" class="text-gray-700 font-bold">Numero Telefonico:</label>
+            {{ Form::tel('PhoneNumber', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Numero telefonico personal o de la empresa']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Correo:</strong>
-            {{ Form::email('Email', null, ['class' => 'form-control', 'placeholder' => 'Correo electronico']) }}
+            <label for="Email" class="text-gray-700 font-bold">Correo:</label>
+            {{ Form::email('Email', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Correo electronico']) }}
         </div>
     </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Tipo de Socio:</strong>
-            {{Form::select('PartnerType', ['Cliente' => 'Cliente', 'Proveedor' => 'Proveedor'], 'Proveedor') }}
+            <label for="PartnerType" class="text-gray-700 font-bold">Tipo de Socio:</label>
+            {{ Form::select('PartnerType', ['Cliente' => 'Cliente', 'Proveedor' => 'Proveedor'], 'Proveedor', ['class' => 'border border-gray-300 rounded w-full']) }}
         </div>
     </div>
 </div>

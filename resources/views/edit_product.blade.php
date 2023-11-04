@@ -1,15 +1,12 @@
-@extends('layouts.base')
-
-@section('content')
-    <div class="row">
-        <div class="col-12">
-            <div>
-                <h2>Editar Producto</h2>
-            </div>
-            <div>
-                <a href="{{route('product.index')}}" class="btn btn-primary">Volver</a>
-            </div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-gray-700 font-semibold text-xl leading-tight">
+            {{ __('Editar Producto') }}
+        </h2>
+        <div>
+            <a href="{{ route('product.index') }}" >Volver</a>
         </div>
+    </x-slot>
 
         @include('error')
 
@@ -19,6 +16,6 @@
             {{ Form::submit('Actualizar', ['class' => 'btn btn-primary']) }}
         </div>
         {!! Form::close() !!}
-    </div>
 
-@endsection
+</x-app-layout>
+

@@ -1,27 +1,26 @@
-<div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+<div class="flex flex-col">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Fecha:</strong>
-            {{ Form::date('date', null, ['class' => 'form-control']) }}
+            <label for="date" class="text-gray-700 font-bold">Fecha:</label>
+            {{ Form::date('date', null, ['class' => 'border border-gray-300 rounded w-full']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Partner:</strong>
-            {{ Form::text('Partner_id', null, ['class' => 'form-control', 'placeholder' => 'Elige un Partner']) }}
+            <label for="Partner_id" class="text-gray-700 font-bold">Partner:</label>
+            {{ Form::text('Partner_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Elige un Partner']) }}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Total:</strong>
-            {{ Form::number('TotalAmount', null, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Total de la venta o compra']) }}
+            <label for="TotalAmount" class="text-gray-700 font-bold">Total:</label>
+            {{ Form::number('TotalAmount', null, ['step' => '0.01', 'class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Total de la venta o compra']) }}
         </div>
     </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-6 mt-2">
+    <div class="w-full mt-2">
         <div class="form-group">
-            <strong>Tipo de Transaccion:</strong>
-            {{Form::select('PartnerType', ['Venta' => 'Venta', 'Compra' => 'Compra'], 'Compra') }}
+            <label for="PartnerType" class="text-gray-700 font-bold">Tipo de Transaccion:</label>
+            {{ Form::select('PartnerType', ['Venta' => 'Venta', 'Compra' => 'Compra'], 'Compra', ['class' => 'border border-gray-300 rounded w-full']) }}
         </div>
     </div>
 </div>

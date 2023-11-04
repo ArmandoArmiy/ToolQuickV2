@@ -91,5 +91,6 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
     }
+
 }
 

@@ -59,7 +59,8 @@ class Transaction_DetailsController extends Controller
      */
     public function edit(Transaction_Details $transaction_Details)
     {
-        return view('edit_details', ['details' => $transaction_Details]);
+        $detail = Transaction_Details::find($transaction_Details);
+        return view('edit_details', ['details' => $detail]);
     }
 
     /**

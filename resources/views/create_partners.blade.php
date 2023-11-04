@@ -1,23 +1,20 @@
-@extends('layouts.base')
-
-@section('content')
-    <div class="row">
-        <div class="col-12">
-            <div>
-                <h2>Agregar Partner</h2>
-            </div>
-            <div>
-                <a href="{{route('partners.index')}}" class="btn btn-primary">Volver</a>
-            </div>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-gray-700 font-semibold text-xl leading-tight">
+            {{ __('Agregar Partner') }}
+        </h2>
+        <div>
+            <a href="{{ route('category.index') }}" >Volver</a>
         </div>
+    </x-slot>
 
-        @include('error')
+    @include('error')
 
-        {!! Form::open(['route' => 'partners.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-        @include('form_partners')
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
-            {{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
-        </div>
-        {!! Form::close() !!}
+    {!! Form::open(['route' => 'partners.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    @include('form_partners')
+    <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
+        {{ Form::submit('Guardar', ['class' => 'btn btn-primary']) }}
     </div>
-@endsection
+    {!! Form::close() !!}
+
+</x-app-layout>
