@@ -32,8 +32,6 @@ class CategoryController extends Controller
     public function create(): View
     {
         return view('create_category');
-    }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -46,8 +44,6 @@ class CategoryController extends Controller
         //dd($request->all());
         Category::create($request->all());
         return redirect()->route('category.index')->with('success', 'Nueva Categoría creada exitosamente!');
-    }
-
     /**
      * Display the specified resource.
      */
@@ -57,14 +53,13 @@ class CategoryController extends Controller
         $pdf = Pdf::loadView('report_category', ['categorys' => $categorys]);
         return $pdf->stream('reporte_categorias.pdf');
     }
-
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Category $category): View
     {
         return view('edit_category', ['category' => $category]);
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -78,7 +73,7 @@ class CategoryController extends Controller
         //dd($request->all());
         $category->update($request->all());
         return redirect()->route('category.index')->with('success', 'Categoría actualizada exitosamente!');
-    }
+   
 
     /**
      * Remove the specified resource from storage.
@@ -99,4 +94,3 @@ class CategoryController extends Controller
     }
 
 }
-
