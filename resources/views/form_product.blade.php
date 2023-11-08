@@ -20,6 +20,8 @@
     </div>
     <div class="w-full mt-2">
             <label for="CategoryDescription" class="text-gray-700 font-bold">Categoría:</label>
-            {{ Form::text('Category_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Categoria a la que pertenece...']) }}
-    </div>
+            {{ Form::select('Category_id', $category ->pluck('CategoryName', 'id'), null, ['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ', 'required' => 'required', 'placeholder' => 'Elige un categoría']) }}
+
+</div>
+
 </div>

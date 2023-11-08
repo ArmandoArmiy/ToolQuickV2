@@ -13,6 +13,14 @@ class Transaction extends Model
     protected $table = 'transaction';
     protected $fillable = ['TransactionDate', 'Partner_id', 'TotalAmount', 'TransactionType'];
 
+    public function Partner_id()
+    {
+        return $this->hasMany ('App\Models\Partners', 'Partner_id');
+    }
+    public function Id_Partner()
+    {
+        return $this->belongsTo('App\Models\Partners', 'Partner_id');
+    }
     public function toSearchableArray()
     {
         $array = $this->toArray();

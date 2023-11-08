@@ -7,9 +7,11 @@
             <form action="{{route('product.create', $products)}}" method="GET" class="d-inline">
                 <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Crear</button>
             </form>
+            {{--
             <form action="{{route('product.show', $products)}}" method="GET" class="d-inline">
                 <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-2">Generar PDF</button>
             </form>
+            --}}
         </div>
         <div class="mt-1.5 justify-center items-center bg-gray-50">
             <form action="{{ route('product.index') }}" method="GET">
@@ -46,9 +48,9 @@
                 <tr>
                     <td class="border px-4 py-2">{{$product->ProductName}}</td>
                     <td class="border px-4 py-2">{{$product->Description}}</td>
-                    <td class="border px-4 py-2">{{$product->SellingPrice}}</td>
+                    <td class="border px-4 py-2">${{$product->SellingPrice}}</td>
                     <td class="border px-4 py-2">{{$product->QuantityInInventory}}</td>
-                    <td class="border px-4 py-2">{{$product->Category_id}}</td>
+                    <td class="border px-4 py-2">{{$product->Id_category->CategoryName}}</td>
                     <td class="border px-4 py-2">
                         <div class="flex">
                             <form action="{{ route('product.edit', $product) }}" method="GET" class="inline">

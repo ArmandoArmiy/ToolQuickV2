@@ -12,7 +12,7 @@
                     {{ __("Bienvenido a ToolQuick tu herramienta confiable para gestionar tus compras") }}
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 ml-2 mb-3">
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
                         <div class="p-5">
                             <a href="#">

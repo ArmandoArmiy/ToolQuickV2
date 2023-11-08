@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Transaction;
 use App\Models\Transaction_Details;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -32,7 +34,9 @@ class Transaction_DetailsController extends Controller
      */
     public function create(): View
     {
-        return view('create_details');
+        $product = Product::all();
+        $tran = Transaction::all();
+        return view('create_details',['product'=>$product, 'tran'=>$tran]);
     }
 
     /**
@@ -67,7 +71,9 @@ class Transaction_DetailsController extends Controller
     public function edit(Transaction_Details $transaction_Details)
     {
         $detail = Transaction_Details::find($transaction_Details);
-        return view('edit_details', ['details' => $detail]);
+        $product = Product::all();
+        $tran = Transaction::all();
+        return view('edit_details', ['details' => $detail,'product'=>$product, 'tran'=>$tran]);
     }
 
     /**

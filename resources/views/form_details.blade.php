@@ -3,13 +3,13 @@
     <div class="w-full mt-2">
         <div class="form-group">
             <label for="Transaction_id" class="text-gray-700 font-bold">ID de Transacción:</label>
-            {{ Form::number('Transaction_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Identificador de la transacción']) }}
+            {{ Form::select('Transaction_id', $tran ->pluck('id', 'id'), null, ['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ', 'required' => 'required', 'placeholder' => 'Elige un Transacción']) }}
         </div>
     </div>
     <div class="w-full mt-2">
         <div class="form-group">
             <label for="Product_id" class="text-gray-700 font-bold">ID del Producto:</label>
-            {{ Form::number('Product_id', null, ['class' => 'border border-gray-300 rounded w-full', 'placeholder' => 'Identificador del producto']) }}
+            {{ Form::select('Product_id', $product ->pluck('ProductName', 'id'), null, ['class' => 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ', 'required' => 'required', 'placeholder' => 'Elige un Producto']) }}
         </div>
     </div>
     <div class="w-full mt-2">
