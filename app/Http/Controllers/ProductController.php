@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class ProductController extends Controller
         if ($searchTerm) {
             $products = Product::search($searchTerm)->paginate(15);
         } else {
-            $products = Product::latest()->paginate(15);
+            $products = Product::with('Id_category')->latest()->paginate(15);
         }
 
         return view('index_product', ['products' => $products, 'searchTerm' => $searchTerm]);
@@ -32,7 +33,8 @@ class ProductController extends Controller
      */
     public function create(): View
     {
-        return view('create_product');
+        $category = Category::all();
+        return view('create_product',['category'=>$category]);
     }
 
     /**
@@ -67,7 +69,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product): View
     {
-        return view('edit_product', ['product' => $product]);
+        $category = Category::all();
+        return view('edit_product', ['product' => $product, 'category'=>$category]);
     }
 
     /**

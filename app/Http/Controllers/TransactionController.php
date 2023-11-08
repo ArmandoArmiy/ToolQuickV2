@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Partners;
 use App\Models\Transaction;
 use Illuminate\Database\QueryException;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -32,7 +33,8 @@ class TransactionController extends Controller
      */
     public function create():View
     {
-        return view('create_transaction');
+        $partner = Partners::all();
+        return view('create_transaction', ['partner'=>$partner]);
     }
 
     /**
@@ -67,7 +69,8 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction):View
     {
-        return view('edit_transaction', ['transaction' => $transaction]);
+        $partner = Partners::all();
+        return view('edit_transaction', ['transaction' => $transaction, 'partner'=>$partner]);
     }
 
     /**

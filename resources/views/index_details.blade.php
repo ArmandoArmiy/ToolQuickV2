@@ -7,9 +7,11 @@
             <form action="{{route('details.create', $details)}}" method="GET" class="d-inline">
                 <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Crear</button>
             </form>
+            {{--
             <form action="{{route('details.show', $details)}}" method="GET" class="d-inline">
                 <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-2">Generar PDF</button>
             </form>
+            --}}
         </div>
         <div class="mt-1.5 justify-center items-center bg-gray-50">
             <form action="{{ route('details.index') }}" method="GET">
@@ -34,7 +36,7 @@
             <thead class="text-m text-white uppercase bg-gray-50 dark:bg-gray-700 dark:text-white-400">
             <tr>
                 <th class="px-4 py-2">Número de Transacción</th>
-                <th class="px-4 py-2">Número del Producto</th>
+                <th class="px-4 py-2">Producto</th>
                 <th class="px-4 py-2">Cantidad</th>
                 <th class="px-4 py-2">Precio Unitario</th>
                 <th class="px-4 py-2">Subtotal</th>
@@ -44,11 +46,11 @@
             <tbody>
             @foreach ($details as $detail)
                 <tr>
-                    <td class="border px-4 py-2">{{$detail->Transaction_id}}</td>
-                    <td class="border px-4 py-2">{{$detail->Product_id}}</td>
+                    <td class="border px-4 py-2">{{$detail->Id_Transaction->id}}</td>
+                    <td class="border px-4 py-2">{{$detail->Id_Product->ProductName}}</td>
                     <td class="border px-4 py-2">{{$detail->Quantity}}</td>
-                    <td class="border px-4 py-2">{{$detail->UnitPrice}}</td>
-                    <td class="border px-4 py-2">{{$detail->Subtotal}}</td>
+                    <td class="border px-4 py-2">${{$detail->UnitPrice}}</td>
+                    <td class="border px-4 py-2">${{$detail->Subtotal}}</td>
                     <td class="border px-4 py-2">
                         <div class="flex">
                             <form action="{{ route('details.edit', $detail) }}" method="GET" class="inline">

@@ -7,13 +7,13 @@
             <form action="{{route('category.create', $categorys)}}" method="GET" class="d-inline">
                 <button type="submit" class="bg-white hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">Crear</button>
             </form>
-
+            {{--
             <div class="flex justify-end">
                 <form action="{{route('category.show', $categorys)}}" method="GET" class="d-inline">
                     <button type="submit" class="bg-white hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded ml-2">Generar PDF</button>
                 </form>
-
             </div>
+            --}}
         </div>
         <div class="mt-1.5 justify-center items-center bg-gray-50">
             <form action="{{ route('category.index') }}" method="GET">

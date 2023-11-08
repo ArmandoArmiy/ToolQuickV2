@@ -44,8 +44,8 @@ class PartnersController extends Controller
         $request->validate([
             'PartnerName' => 'required',
             'Address' => 'required',
-            'PhoneNumber' => 'required',
-            'Email' => 'required',
+            'PhoneNumber' => ['required','digits:10'],
+            'Email' => ['required', 'email'],
             'PartnerType' => 'required'
         ]);
         //dd($request->all());
