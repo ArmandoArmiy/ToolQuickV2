@@ -60,9 +60,7 @@ class Transaction_DetailsController extends Controller
      */
     public function show(Transaction_Details $transaction_Details)
     {
-        $details = Transaction_Details::all();
-        $pdf = Pdf::loadView('report_details', ['details' => $details]);
-        return $pdf->stream('reporte_de_transacciones_detalladas.pdf');
+        //
     }
 
     /**
@@ -108,5 +106,11 @@ class Transaction_DetailsController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $details = Transaction_Details::all();
+        $pdf = Pdf::loadView('report_details', compact('details'));
+        return $pdf->stream('reporte_de_transacciones_detalladas.pdf');
     }
 }

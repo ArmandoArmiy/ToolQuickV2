@@ -59,9 +59,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        $transactions = Transaction::all();
-        $pdf = Pdf::loadView('report_transaction', ['transaction' => $transactions]);
-        return $pdf->stream('reporte_de_transacciones_generales.pdf');
+        //
     }
 
     /**
@@ -83,7 +81,6 @@ class TransactionController extends Controller
             'TransactionDate' => 'required',
             'Partner_id' => 'required',
             'TotalAmount' => 'required',
-            'TransactionType' => 'required'
         ]);
         $transaction->update($request->all());
         return redirect()->route('transaction.index')->with('success', 'Transacción actualizada exitosamente!');
@@ -105,7 +102,11 @@ class TransactionController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
-
-
+    }
+    public function pdf()
+    {
+        $transaction = Transaction::all();
+        $pdf = Pdf::loadView('report_transaction', compact('transaction'));
+        return $pdf->stream('reporte_de_transacciones_generales.pdf');
     }
 }

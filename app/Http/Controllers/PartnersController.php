@@ -58,9 +58,7 @@ class PartnersController extends Controller
      */
     public function show(Partners $partners)
     {
-        $partner = Partners::all();
-        $pdf = Pdf::loadView('report_partners', ['partner' => $partner]);
-        return $pdf->stream('reporte_socios.pdf');
+        //
     }
 
     /**
@@ -103,5 +101,11 @@ class PartnersController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $partner = Partners::all();
+        $pdf = Pdf::loadView('report_partners', compact('partner'));
+        return $pdf->stream('reporte_socios.pdf');
     }
 }
