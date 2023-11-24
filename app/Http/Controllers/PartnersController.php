@@ -58,17 +58,16 @@ class PartnersController extends Controller
      */
     public function show(Partners $partners)
     {
-        $partner = Partners::all();
-        $pdf = Pdf::loadView('report_partners', ['partner' => $partner]);
-        return $pdf->stream('reporte_socios.pdf');
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Partners $partners): View
+    public function edit($partners): View
     {
-        return view('edit_partners', ['partners' => $partners]);
+        $partner = Partners::find($partners);
+        return view('edit_partners', ['partner' => $partner]);
     }
 
     /**
@@ -91,10 +90,11 @@ class PartnersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Partners $partners): RedirectResponse
+    public function destroy($partners): RedirectResponse
     {
+        $registro = Partners::find($partners);
         try {
-            $partners->delete();
+            $registro->delete();
             return redirect()->route('partners.index')->with('success', 'Eliminado exitosamente!');
         } catch (QueryException $e) {
             if ($e->getCode() === '23000') {
@@ -103,5 +103,11 @@ class PartnersController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $partner = Partners::all();
+        $pdf = Pdf::loadView('report_partners', compact('partner'));
+        return $pdf->stream('reporte_socios.pdf');
     }
 }

@@ -49,9 +49,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $categorys = Category::all();
-        $pdf = Pdf::loadView('report_category', ['categorys' => $categorys]);
-        return $pdf->stream('reporte_categorias.pdf');
+        //
     }
     /**
      * Show the form for editing the specified resource.
@@ -91,6 +89,12 @@ class CategoryController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $categorys = Category::all();
+        $pdf = Pdf::loadView('report_category', compact('categorys'));
+        return $pdf->stream('reporte_categorias.pdf');
     }
 
 }

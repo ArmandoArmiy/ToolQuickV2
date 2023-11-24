@@ -10,7 +10,7 @@
 
     @include('error')
 
-    {!! Form::model($partners, ['route' => ['partners.update', $partners], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::model($partner, ['route' => ['partners.update', $partner], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
     @include('form_partners')
     <div class="col-xs-12 col-sm-12 col-md-12 text-center mt-2">
         {{ Form::submit('Actualizar', ['class' => 'btn btn-primary']) }}

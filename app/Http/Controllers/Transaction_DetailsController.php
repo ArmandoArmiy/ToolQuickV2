@@ -60,9 +60,7 @@ class Transaction_DetailsController extends Controller
      */
     public function show(Transaction_Details $transaction_Details)
     {
-        $details = Transaction_Details::all();
-        $pdf = Pdf::loadView('report_details', ['details' => $details]);
-        return $pdf->stream('reporte_de_transacciones_detalladas.pdf');
+        //
     }
 
     /**
@@ -70,10 +68,10 @@ class Transaction_DetailsController extends Controller
      */
     public function edit(Transaction_Details $transaction_Details)
     {
-        $detail = Transaction_Details::find($transaction_Details);
+        $details = Transaction_Details::find($transaction_Details);
         $product = Product::all();
         $tran = Transaction::all();
-        return view('edit_details', ['details' => $detail,'product'=>$product, 'tran'=>$tran]);
+        return view('edit_details', ['detail' => $details, 'product' => $product, 'tran' => $tran]);
     }
 
     /**
@@ -95,11 +93,11 @@ class Transaction_DetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Transaction_Details $transaction_Details)
+    public function destroy($transaction_Details): RedirectResponse
     {
-        //dd($transaction_Details);
+        $registro = Transaction_Details::find($transaction_Details);
         try {
-            $transaction_Details->delete();
+            $registro->delete();
             return redirect()->route('details.index')->with('success', 'Transacción Eliminada exitosamente!');
         } catch (QueryException $e) {
             if ($e->getCode() === '23000') {
@@ -108,5 +106,11 @@ class Transaction_DetailsController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $details = Transaction_Details::all();
+        $pdf = Pdf::loadView('report_details', compact('details'));
+        return $pdf->stream('reporte_de_transacciones_detalladas.pdf');
     }
 }

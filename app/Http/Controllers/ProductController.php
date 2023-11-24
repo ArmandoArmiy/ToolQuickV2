@@ -59,9 +59,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $products = Product::all();
-        $pdf = Pdf::loadView('report_product', ['products' => $products]);
-        return $pdf->stream('reporte_de_productos.pdf');
+        //
     }
 
     /**
@@ -106,5 +104,11 @@ class ProductController extends Controller
 
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
+    }
+    public function pdf()
+    {
+        $products = Product::all();
+        $pdf = Pdf::loadView('report_product', compact('products'));
+        return $pdf->stream('reporte_de_productos.pdf');
     }
 }

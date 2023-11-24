@@ -2,7 +2,7 @@
     <div class="w-full mt-2">
         <div class="form-group">
             <label for="date" class="text-gray-700 font-bold">Fecha:</label>
-            {{ Form::date('date', null, ['class' => 'border border-gray-300 rounded w-full']) }}
+            {{ Form::date('TransactionDate', null, ['class' => 'border border-gray-300 rounded w-full']) }}
         </div>
     </div>
     <div class="w-full mt-2">
