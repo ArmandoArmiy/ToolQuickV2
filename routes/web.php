@@ -7,7 +7,6 @@ use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Transaction_DetailsController;
 use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\ChatbotController;
 use Illuminate\Http\Request;
 
 /*

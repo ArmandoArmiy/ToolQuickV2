@@ -43,20 +43,20 @@
             </tr>
             </thead>
             <tbody>
-            @foreach ($details as $detail)
+            @foreach ($details as $details)
                 <tr>
-                    <td class="border px-4 py-2">{{$detail->Id_Transaction->id}}</td>
-                    <td class="border px-4 py-2">{{$detail->Id_Product->ProductName}}</td>
-                    <td class="border px-4 py-2">{{$detail->Quantity}}</td>
-                    <td class="border px-4 py-2">${{$detail->UnitPrice}}</td>
-                    <td class="border px-4 py-2">${{$detail->Subtotal}}</td>
+                    <td class="border px-4 py-2">{{$details->Id_Transaction->id}}</td>
+                    <td class="border px-4 py-2">{{$details->Id_Product->ProductName}}</td>
+                    <td class="border px-4 py-2">{{$details->Quantity}}</td>
+                    <td class="border px-4 py-2">${{$details->UnitPrice}}</td>
+                    <td class="border px-4 py-2">${{$details->Subtotal}}</td>
                     <td class="border px-4 py-2">
                         <div class="flex">
-                            <form action="{{ route('details.edit', $detail) }}" method="GET" class="inline">
+                            <form action="{{ route('details.edit', $details) }}" method="GET" class="inline">
                                 <button type="submit" class="bg-white text-yellow-500 border border-yellow-500 hover:border-yellow-700 font-bold py-2 px-4 rounded mr-4" >Editar</button>
                             </form>
 
-                            <form action="{{ route('details.destroy', $detail) }}" method="POST" class="inline">
+                            <form action="{{ route('details.destroy', $details) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="bg-white text-red-500 border border-red-500 hover:border-red-700 font-bold py-2 px-4 rounded" >Eliminar</button>

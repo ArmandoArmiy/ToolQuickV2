@@ -1,24 +1,29 @@
 <x-app-layout>
+    {{-- Header --}}
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Inicio') }}
         </h2>
     </x-slot>
-
+    {{-- Mensaje de inicio --}}
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 text-center">
+                <div class="p-6 text-gray-900 text-center font-bold">
                     {{ __("Bienvenido a ToolQuick tu herramienta para gestionar tus compras") }}
                 </div>
-
+                {{-- Grid para las cards --}}
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-3 ml-2 mb-3">
+                    {{-- Cards --}}
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
                         <div class="p-5">
+                            {{-- Titulo de la card --}}
                             <a href="#">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Categorias</h5>
                             </a>
+                            {{-- Subtitulo de la card --}}
                             <p class="mb-3 font-normal text-gray-700 ">Listado de todas las categorias existentes.</p>
+                            {{-- Boton para genrear el PDF --}}
                             <form action="{{ route('pdf_category') }}" method="GET" class="d-inline">
                                 <button type="submit" class="bg-white hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-2 px-4 border border-orange-500 hover:border-transparent rounded">
                                     Generar PDF
@@ -41,7 +46,7 @@
                         </div>
                     </div>
 
-                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
+                    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow  mr-2">
                         <div class="p-5">
                             <a href="#">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">Socios</h5>
