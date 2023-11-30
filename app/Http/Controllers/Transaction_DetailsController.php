@@ -68,10 +68,13 @@ class Transaction_DetailsController extends Controller
      */
     public function edit(Transaction_Details $transaction_Details)
     {
-        $details = Transaction_Details::find($transaction_Details);
+        //$detail = Transaction_Details::find($transaction_Details->id);
+        $detail = Transaction_Details::find($transaction_Details);
         $product = Product::all();
         $tran = Transaction::all();
-        return view('edit_details', ['detail' => $details, 'product' => $product, 'tran' => $tran]);
+        return view('edit_details', compact('detail', 'product', 'tran'));
+        //return view('edit_details', ['detail' => $details, 'product' => $product, 'tran' => $tran]);
+
     }
 
     /**

@@ -1,4 +1,4 @@
-@csrf
+
 <div class="flex flex-col">
     <div class="w-full mt-2">
         <div class="form-group">

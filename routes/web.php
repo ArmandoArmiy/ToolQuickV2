@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
 
 });
+Route::put('/details/{detail}', 'Transaction_DetailsController@update')->name('details.update');
 
 require __DIR__.'/auth.php';
 
