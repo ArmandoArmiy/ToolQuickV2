@@ -11,4 +11,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        rollupOptions: {
+            external: ['algoliasearch-helper']
+            // Añade aquí cualquier otro módulo externo si es necesario
+        },
+    },
 });
+
