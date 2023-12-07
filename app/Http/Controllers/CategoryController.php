@@ -41,7 +41,6 @@ class CategoryController extends Controller
             'CategoryName' => 'required',
             'CategoryDescription' => 'required'
         ]);
-        //dd($request->all());
         Category::create($request->all());
         return redirect()->route('category.index')->with('success', 'Nueva Categoría creada exitosamente!');
     /**
@@ -86,7 +85,6 @@ class CategoryController extends Controller
             if ($e->getCode() === '23000') {
                 return redirect()->back()->with('error', 'No se puede borrar esta categoría. Está siendo referenciada por uno o más productos.');
             }
-
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
     }

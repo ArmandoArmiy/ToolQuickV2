@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Transacciones') }}
+            {{ __('Detalles de Transacciones') }}
         </h2>
         <div class="flex mt-2">
             <form action="{{route('details.create', $details)}}" method="GET" class="d-inline">
