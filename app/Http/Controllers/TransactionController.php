@@ -42,16 +42,15 @@ class TransactionController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //dd($request->all());
         $request->validate([
-        'TransactionDate' => 'required',
-        'Partner_id' => 'required',
-        'TotalAmount' => 'required',
-        'TransactionType' => 'required'
-    ]);
+            'TransactionDate' => 'required',
+            'Partner_id' => 'required',
+            'TotalAmount' => 'required',
+            'TransactionType' => 'required',
+        ]);
+        //dd($request->all());
         Transaction::create($request->all());
         return redirect()->route('transaction.index')->with('success', 'Nueva Transacción creada exitosamente!');
-
     }
 
     /**

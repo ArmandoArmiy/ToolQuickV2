@@ -35,7 +35,7 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    private function store(Request $request)
     {
         $request->validate([
             'CategoryName' => 'required',
@@ -88,8 +88,7 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', 'Ocurrió un error: ' . $e->getMessage());
         }
     }
-    public function pdf()
-    {
+    public function pdf(){
         $categorys = Category::all();
         $pdf = Pdf::loadView('report_category', compact('categorys'));
         return $pdf->stream('reporte_categorias.pdf');
