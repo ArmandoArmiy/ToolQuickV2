@@ -12,7 +12,7 @@
 </head>
 <body>
 <div style="text-align: center; margin: 0 auto;padding: 20px;">
-    <img src="C:\Users\arman\OneDrive\Documentos\ITSZO\7mo Semestre\Tec Emergentes\ToolQuick\public\logo.jpg" class="img-fluid" alt="Logo" width="350px">
+    <h1>Ferretería la Caridad</h1>
 </div>
 <div class="container">
     @yield('content')
